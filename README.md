@@ -101,19 +101,20 @@ All execution times are measured using System.nanoTime().
 6. Experimental Results
 Table 1. Dataset Summary and Performance
 
-```test
-Dataset	Nodes	Edges	SCCs	Type	Critical Path	Time (ms)
-small_1	9	22	3	Cyclic	70.0	0.05
-small_2	10	24	2	Mixed	63.0	0.05
-small_3	10	29	1	Fully cyclic	102.0	0.02
-medium_1	15	45	2	Mixed	126.0	0.14
-medium_2	11	26	4	Mixed	57.0	0.04
-medium_3	14	35	5	Mixed	65.0	0.06
-large_1	49	144	7	Dense	382.0	0.13
-large_2	23	67	6	Mixed	156.0	0.05
-large_3	36	106	10	Dense	256.0	0.11
 
-```
+| Dataset | Nodes | Edges | SCCs | Type | Critical Path | Time (ms) |
+|----------|--------|--------|------|------|----------------|------------|
+| small_1  | 9      | 22     | 3    | Cyclic | 70.0 | 0.05 |
+| small_2  | 10     | 24     | 2    | Mixed | 63.0 | 0.05 |
+| small_3  | 10     | 29     | 1    | Fully cyclic | 102.0 | 0.02 |
+| medium_1 | 15     | 45     | 2    | Mixed | 126.0 | 0.14 |
+| medium_2 | 11     | 26     | 4    | Mixed | 57.0 | 0.04 |
+| medium_3 | 14     | 35     | 5    | Mixed | 65.0 | 0.06 |
+| large_1  | 49     | 144    | 7    | Dense | 382.0 | 0.13 |
+| large_2  | 23     | 67     | 6    | Mixed | 156.0 | 0.05 |
+| large_3  | 36     | 106    | 10   | Dense | 256.0 | 0.11 |
+
+
 
 Observation:
 
