@@ -112,7 +112,7 @@ Relaxations and runtime (DAG shortest/longest paths)
 All execution times measured using System.nanoTime()
 
 ### 5.1 Project Structure
-
+```text
 DAA04/
 │
 ├── data/                       # Graph datasets (JSON)
@@ -150,48 +150,48 @@ DAA04/
 ├── README.md                   # Documentation
 └── target/                     # Compiled classes (auto-generated)
 
-
+```
 ---
 
 
-6. Experimental Results
-Table 1. Dataset Summary and Performance
+### 6. Experimental Results
+
+#### Table 1. Dataset Summary and Performance
+
 | **Dataset** | **Nodes** | **Edges** | **SCCs** | **Type**     | **Critical Path** | **Time (ms)** |
-| ----------- | --------- | --------- | -------- | ------------ | ----------------- | ------------- |
-| small_1     | 9         | 22        | 3        | Cyclic       | 70.0              | 0.05          |
-| small_2     | 10        | 24        | 2        | Mixed        | 63.0              | 0.05          |
-| small_3     | 10        | 29        | 1        | Fully cyclic | 102.0             | 0.02          |
-| medium_1    | 15        | 45        | 2        | Mixed        | 126.0             | 0.14          |
-| medium_2    | 11        | 26        | 4        | Mixed        | 57.0              | 0.04          |
-| medium_3    | 14        | 35        | 5        | Mixed        | 65.0              | 0.06          |
-| large_1     | 49        | 144       | 7        | Dense        | 382.0             | 0.13          |
-| large_2     | 23        | 67        | 6        | Mixed        | 156.0             | 0.05          |
-| large_3     | 36        | 106       | 10       | Dense        | 256.0             | 0.11          |
+|-------------|-----------|-----------|-----------|--------------|-------------------|---------------|
+| small_1     | 9         | 22        | 3         | Cyclic       | 70.0              | 0.05          |
+| small_2     | 10        | 24        | 2         | Mixed        | 63.0              | 0.05          |
+| small_3     | 10        | 29        | 1         | Fully cyclic | 102.0             | 0.02          |
+| medium_1    | 15        | 45        | 2         | Mixed        | 126.0             | 0.14          |
+| medium_2    | 11        | 26        | 4         | Mixed        | 57.0              | 0.04          |
+| medium_3    | 14        | 35        | 5         | Mixed        | 65.0              | 0.06          |
+| large_1     | 49        | 144       | 7         | Dense        | 382.0             | 0.13          |
+| large_2     | 23        | 67        | 6         | Mixed        | 156.0             | 0.05          |
+| large_3     | 36        | 106       | 10        | Dense        | 256.0             | 0.11          |
 
+### Observations
 
-Observations
+- SCC detection successfully reduced cyclic subgraphs into single DAG nodes.  
+- Topological sorting provided valid execution order across all datasets.  
+- Longest paths matched the total internal weights of the largest SCCs.  
+- Execution time remained in the millisecond range, even for 50-node graphs.
 
-SCC detection successfully reduced cyclic subgraphs into single DAG nodes.
+### 7. Discussion
 
-Topological sorting provided valid execution order across all datasets.
-
-Longest paths matched the total internal weights of the largest SCCs.
-
-Execution time remained in the millisecond range, even for 50-node graphs.
-
-7. Discussion
 | **Criterion**       | **SCC + Condensation**                      | **Topological Sort**         | **DAG Shortest/Longest**      |
-| ------------------- | ------------------------------------------- | ---------------------------- | ----------------------------- |
-| **Purpose**         | Detect & compress cycles                    | Order independent components | Optimize execution cost       |
-| **Time complexity** | O(V + E)                                    | O(V + E)                     | O(V + E)                      |
-| **Best suited for** | Cyclic dependency detection                 | Scheduling                   | Task time optimization        |
-| **Observations**    | Cycles appear mostly in medium/large graphs | Produces consistent order    | Longest path = critical chain |
+| -------------------- | ------------------------------------------- | ---------------------------- | ----------------------------- |
+| **Purpose**          | Detect & compress cycles                    | Order independent components | Optimize execution cost       |
+| **Time complexity**  | O(V + E)                                    | O(V + E)                     | O(V + E)                      |
+| **Best suited for**  | Cyclic dependency detection                 | Scheduling                   | Task time optimization        |
+| **Observations**     | Cycles appear mostly in medium/large graphs | Produces consistent order    | Longest path = critical chain |
 
+### Analysis
 
-Analysis:
-The combination of SCC and topological sorting forms a robust workflow scheduler.
-DAG-based dynamic programming ensures efficient path computation.
-Internal weights (sum of intra-SCC edges) correctly represent execution loads.
+- The combination of **SCC** and **Topological Sorting** forms a robust workflow scheduler.  
+- **DAG-based dynamic programming** ensures efficient path computation.  
+- Internal weights (sum of intra-SCC edges) correctly represent execution loads.
+
 
 8. Conclusion
 
